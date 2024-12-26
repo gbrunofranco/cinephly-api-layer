@@ -1,0 +1,40 @@
+[project]
+name = "database-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.6",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.7.0",
+    "uvicorn>=0.34.0",
+]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".git-rewrite",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+]
+
+line-length = 144
+indent-width = 4
+
+target-version = "py312"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "./app"
+]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "pytest-asyncio>=0.25.0",
+    "pytest>=8.3.4",
+]
