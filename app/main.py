@@ -1,23 +1,18 @@
-from fastapi import Depends, FastAPI, HTTPException, Security
+from fastapi import Depends, FastAPI
 from fastapi.security import APIKeyHeader
 
+from app.utils import verify_api_key
+
 from . import schemas
-from .config import settings
 from .d1_client import D1Client
+from .routers.movies import router as movie_router
 
 app = FastAPI()
+app.include_router(movie_router)
+
 d1_client = D1Client()
 
 api_key_header = APIKeyHeader(name="Authorization")
-
-
-async def verify_api_key(api_key: str = Security(api_key_header)):
-    if not api_key.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Invalid API key format")
-    key = api_key.split(" ")[1]
-    if key != settings.api_key:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    return key
 
 
 @app.post("/api/exec", response_model=schemas.QueryResult)
