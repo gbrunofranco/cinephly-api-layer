@@ -13,8 +13,8 @@ async def create_movie(movie: Movie, api_key: str = Depends(verify_api_key)) -> 
     # First, create the movies table if it doesn't exist
     create_table_query = """
     CREATE TABLE IF NOT EXISTS movies (
-        imdb_id TEXT PRIMARY KEY,
-        movie_id TEXT UNIQUE NOT NULL,
+        movie_id TEXT PRIMARY KEY,
+        imdb_id TEXT,
         movie_name TEXT NOT NULL,
         duration_minutes INTEGER,
         year INTEGER,
