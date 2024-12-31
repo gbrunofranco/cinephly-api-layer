@@ -14,3 +14,12 @@ repos:
       - id: ruff
         name: import sorter
         args: [--select, I, --fix]
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: test runner
+        language: system
+        types: ["python"]
+        entry: pytest
+        pass_filenames: false
+        always_run: true
