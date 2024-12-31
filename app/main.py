@@ -1,11 +1,10 @@
 from fastapi import Depends, FastAPI
 from fastapi.security import APIKeyHeader
 
+from app import schemas
+from app.d1_client import D1Client
+from app.routers.movies import router as movie_router
 from app.utils import verify_api_key
-
-from . import schemas
-from .d1_client import D1Client
-from .routers.movies import router as movie_router
 
 app = FastAPI()
 app.include_router(movie_router)
