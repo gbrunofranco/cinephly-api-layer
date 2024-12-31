@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 
 from app.d1_client import D1Client
-from app.main import verify_api_key
 from app.schemas import Movie, QueryResult
+from app.utils import verify_api_key
 
 d1_client = D1Client()
 router = APIRouter(prefix="/api/v1/movies", tags=["movies"])
